@@ -51,7 +51,13 @@ function showTime(numMins){
 }
 
 function checkPick(){
-	var 
+	var check;
+	if (document.getElementById("p_or_d").checked = true){
+		check = true;
+	} else {
+		check = false;
+	}
+	return check;
 }
  
 $('input[value="delivery"]'.attr('onclick','checkPick()'));
