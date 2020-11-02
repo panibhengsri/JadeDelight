@@ -35,13 +35,7 @@ function showTime(){
 		var myWindow = window.open("", "Order Information");
 		var d = new Date();
 		var res = "Thnak you for ordering with Jade Delight! <br>"; 
-		if (del.checked){
-			res += "Delivery time is ";
-			res += new Date(d.getTime() + 30*60*1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-		}else{
-			res += "Pickup time is ";
-			res += new Date(d.getTime() + 15*60*1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-		}
+		
 		res += "<br><br> ~~Your Order~~ <br>";
 		for (i = 0; i < menuItems.length; i++){
 			var ta = document.getElementsByTagName("tr");
@@ -50,6 +44,14 @@ function showTime(){
 
 		res += " <br> Total (with tax) is $";
 		res += document.getElementById("total").value;
+
+		if (del.checked){
+			res += "Delivery time is ";
+			res += new Date(d.getTime() + 30*60*1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+		}else{
+			res += "Pickup time is ";
+			res += new Date(d.getTime() + 15*60*1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+		}
 
 		myWindow.document.write(res);
 	}
