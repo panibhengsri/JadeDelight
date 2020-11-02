@@ -12,7 +12,7 @@
 
 <body>
 	
-<script language="javascript" >
+<script language="javascript">
 
 function MenuItem(name, cost){
 	this.name = name;
@@ -34,21 +34,21 @@ function showTime(){
 	if ($("form").valid()){
 		var myWindow = window.open("", "Order Information");
 		var d = new Date();
-		var res = "THANK YOU FOR ORDERING! <br>"; 
+		var res = "Thnak you for ordering with Jade Delight! <br>"; 
 		if (del.checked){
-			res += "Your delivery time is ";
+			res += "Delivery time is ";
 			res += new Date(d.getTime() + 30*60*1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 		}else{
-			res += "Your pickup time is ";
+			res += "Pickup time is ";
 			res += new Date(d.getTime() + 15*60*1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 		}
-		res += "<br><br> ====YOUR ORDER==== <br>";
+		res += "<br><br> ~~Your Order~~ <br>";
 		for (i = 0; i < menuItems.length; i++){
 			var ta = document.getElementsByTagName("tr");
 			res += menuItems[i].name + " x " + ta[i+1].childNodes[0].childNodes[0].selectedIndex + " is $" + ta[i+1].getElementsByTagName("input")[0].value + "<br>";
 		}
 
-		res += " <br> Your total (with tax) comes to $";
+		res += " <br> Total (with tax) is $";
 		res += document.getElementById("total").value;
 
 		myWindow.document.write(res);
