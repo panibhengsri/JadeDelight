@@ -46,10 +46,10 @@ function showTime(){
 		res += document.getElementById("total").value;
 
 		if (del.checked){
-			res += "Delivery time is ";
+			res += " <br> Delivery time is ";
 			res += new Date(d.getTime() + 30*60*1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 		}else{
-			res += "Pickup time is ";
+			res += " <br> Pickup time is ";
 			res += new Date(d.getTime() + 15*60*1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 		}
 
