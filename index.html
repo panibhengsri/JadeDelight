@@ -55,24 +55,23 @@ function showTime(){
 	}
 }
 
-function checkDel()
-{
+function checkDel(){
 	console.log("deliv");
-	del.checked = true;
-	pick.checked = false;
+	del.checked = false;
+	pick.checked = true;
 	checkType();
 }
-function checkPick()
-{
+
+function checkPick(){
 	console.log("picking");
 	del.checked = true;
 	pick.checked = false;
 	
 	checkType();
-
 }
+
 function checkType(){
-	if (del.checked){
+	if (pick.checked){
 		$("#str").html("&nbsp;");
 		$("#cit").html("&nbsp;");
 	}else{
