@@ -89,98 +89,74 @@ function checkPick()
 	checkType();
 
 }
-function checkType()
-{
-	if (del.checked)
-	{
+function checkType(){
+	if (del.checked){
 		$("#str").html("&nbsp;");
 		$("#cit").html("&nbsp;");
-	}
-	else{
-		
+	}else{
 		$("#str").append('Street: <input type="text"  name="street" />');
 		$("#cit").append('City: <input type="text"  name="city" />');
 		console.log("hereeee");
 	}
 }
 
-	function makeSelect(name, minRange, maxRange)
-	{
-		var t= "";
-		t = "<select name='" + name + "' size='1'>";
-		for (j=minRange; j<=maxRange; j++)
-		t += "<option>" + j + "</option>";
-		t+= "</select>"; 
-		return t;
+function makeSelect(name, minRange, maxRange){
+	var t= "";
+	t = "<select name='" + name + "' size='1'>";
+	for (j=minRange; j<=maxRange; j++)
+	t += "<option>" + j + "</option>";
+	t+= "</select>"; 
+	return t;
+}
+
+function priceClick(){
+	var tot = 0;
+	var sum = 0;
+	for (i = 0; i < menuItems.length; i++){	
+		var ta = document.getElementsByTagName("tr");
+		sum += ta[i+1].childNodes[0].childNodes[0].selectedIndex * menuItems[i].cost;
+		ta[i+1].getElementsByTagName("input")[0].value = (ta[i+1].childNodes[0].childNodes[0].selectedIndex * menuItems[i].cost).toFixed(2);
 	}
-
-	function priceClick()
-	{
-		var tot = 0;
-		var sum = 0;
-		for (i = 0; i < menuItems.length; i++ )
-		{
-			//var ta = document.getElementsByTagName("tr");
-			//ta[i+1].getElementsByTagName("input")[0].value = parseInt(ta[i+1].getElementsByTagName("select")[0].selectedIndex) * menuItems[i].cost;
-			
-			var ta = document.getElementsByTagName("tr");
-			sum += ta[i+1].childNodes[0].childNodes[0].selectedIndex * menuItems[i].cost;
-			ta[i+1].getElementsByTagName("input")[0].value = (ta[i+1].childNodes[0].childNodes[0].selectedIndex * menuItems[i].cost).toFixed(2);
-		}
-		console.log(sum);
-		var tax = sum * 1.0625;
-		var total = sum + tax;
-		document.getElementById("subtotal").value = sum.toFixed(2);
-		document.getElementById("tax").value = tax.toFixed(2);
-		document.getElementById("total").value = total.toFixed(2);
-
-
-
-		
-	}
+	console.log(sum);
+	var tax = sum * 1.0625;
+	var total = sum + tax;
+	document.getElementById("subtotal").value = sum.toFixed(2);
+	document.getElementById("tax").value = tax.toFixed(2);
+	document.getElementById("total").value = total.toFixed(2);		
+}
 	
-
-	$(function() {
-  		$("form").validate({
-			rules: {
-				lname: {
-					required: true,
-					
-				},
-				phone: {
-					required:true,
-					phoneUS: true
-				}
-
-			}, // end of rule
+$(function() {
+  	$("form").validate({
+		rules: {
+			lname: {
+			required: true,	
+			},
+			phone: {
+				required:true,
+				phoneUS: true
+			}
+		},
 			messages: {
 				lname: " Please enter your lastname!",
 				phone: " Please enter valid phone number!"
-			}, // end of messages
-			
-			i
+			},
+	});
 
-		}); // end of validation 
+	$('input[value="delivery"]').attr('onclick','checkDel()');
+	$('input[value="pickup"]').attr('onclick','checkPick()');
+	$('p:contains(City)').attr("id","cit");
+	$('p:contains(Street)').attr('id','str');
+	$('input[value="Submit Order"]').attr('onclick', 'showTime()');
 
-		$('input[value="delivery"]').attr('onclick','checkDel()');
-		$('input[value="pickup"]').attr('onclick','checkPick()');
-		$('p:contains(City)').attr("id","cit");
-		$('p:contains(Street)').attr('id','str');
-		$('input[value="Submit Order"]').attr('onclick', 'showTime()');
+	for (i = 0; i < menuItems.length; i++){	
+		var ta = document.getElementsByTagName("tr");
+		ta[i+1].getElementsByTagName("select")[0].addEventListener('change', function(){
+			priceClick();
+		});
+		ta[i+1].childNodes[3].childNodes[1].value = (parseInt(ta[i+1].getElementsByTagName("select")[0].selectedIndex) * menuItems[i].cost).toFixed(2);
+	}		
+});
 
-
-		for (i = 0; i < menuItems.length; i++ )
-		{
-			
-			var ta = document.getElementsByTagName("tr");
-			ta[i+1].getElementsByTagName("select")[0].addEventListener('change', function(){
-				priceClick();
-			});
-			ta[i+1].childNodes[3].childNodes[1].value = (parseInt(ta[i+1].getElementsByTagName("select")[0].selectedIndex) * menuItems[i].cost).toFixed(2);
-		
-		}
-		
-	}); // end of jquery ready
 </script>
 
 <h1>Jade Delight</h1>
