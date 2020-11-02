@@ -14,8 +14,7 @@
 	
 <script language="javascript" >
 
-	function MenuItem(name, cost)
-	{
+	function MenuItem(name, cost){
 		this.name = name;
 		this.cost=cost;
 	}
@@ -31,46 +30,29 @@
 	var del = $('input[value="delivery"]');
 	var pick = $('input[value="pickup"]');
 
-	
-function showTime()
-{
-	if ($("form").valid())
-	{
+function showTime(){
+	if ($("form").valid()){
 		var myWindow = window.open("", "Order Information");
 		var d = new Date();
 		var res = "THANK YOU FOR ORDERING! <br>"; 
-		if (del.checked)
-		{
+		if (del.checked){
 			res += "Your delivery time is ";
 			res += new Date(d.getTime() + 30*60*1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-		}
-		else
-		{
+		}else{
 			res += "Your pickup time is ";
 			res += new Date(d.getTime() + 15*60*1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 		}
 		res += "<br><br> ====YOUR ORDER==== <br>";
-		for (i = 0; i < menuItems.length; i++ )
-		{
+		for (i = 0; i < menuItems.length; i++){
 			var ta = document.getElementsByTagName("tr");
-			//ta[i+1].getElementsByTagName("input")[0].value = parseInt(ta[i+1].getElementsByTagName("select")[0].selectedIndex) * menuItems[i].cost;
-			
 			res += menuItems[i].name + " x " + ta[i+1].childNodes[0].childNodes[0].selectedIndex + " is $" + ta[i+1].getElementsByTagName("input")[0].value + "<br>";
-		
 		}
-
-
 
 		res += " <br> Your total (with tax) comes to $";
 		res += document.getElementById("total").value;
 
-		// document.getElementById("subtotal").value = sum.toFixed(2);
-		// document.getElementById("tax").value = tax.toFixed(2);
-		// document.getElementById("total").value = total.toFixed(2);
 		myWindow.document.write(res);
 	}
-	
-
 }
 
 function checkDel()
