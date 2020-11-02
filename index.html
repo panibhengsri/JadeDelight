@@ -31,6 +31,23 @@ function makeSelect(name, minRange, maxRange)
 	t+= "</select>"; 
 	return t;
 }
+
+$("#seeAnotherFieldGroup").change(function() {
+  if ($(this).val() == "yes") {
+    $('#otherFieldGroupDiv').show();
+    $('#deliveryAdded1').attr('required', '');
+    $('#deliveryAdded1').attr('data-error', 'This field is required.');
+    $('#deliveryAdded2').attr('required', '');
+    $('#deliveryAdded2').attr('data-error', 'This field is required.');
+  } else {
+    $('#otherFieldGroupDiv').hide();
+    $('#deliveryAdded1').removeAttr('required');
+    $('#deliveryAdded1').removeAttr('data-error');
+    $('#deliveryAdded2').removeAttr('required');
+    $('#deliveryAdded2').removeAttr('data-error');
+  }
+});
+$("#seeAnotherFieldGroup").trigger("change");
  
 </script>
 
@@ -38,10 +55,10 @@ function makeSelect(name, minRange, maxRange)
 <form>
 
 <p>First Name: <input type="text"  name='fname' /></p>
-<p>Last Name*:  <input type="text"  name='lname' /></p>
-<p>Street: <input type="text"  name='street' /></p>
-<p>City: <input type="text"  name='city' /></p>
-<p>Phone*: <input type="text"  name='phone' /></p>
+<p>Last Name*:  <input type="text"  name='lname' / required></p>
+<p for= "deliveryAdded1">Street: <input type="text"  name='street' /></p>
+<p for= "deliveryAdded2">City: <input type="text"  name='city' /></p>
+<p>Phone*: <input type="text"  name='phone' / required></p>
 <p> 
 	<input type="radio"  name="p_or_d" value = "pickup" checked="checked"/>Pickup  
 	<input type="radio"  name='p_or_d' value = 'delivery'/>
