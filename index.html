@@ -14,21 +14,21 @@
 	
 <script language="javascript" >
 
-	function MenuItem(name, cost){
-		this.name = name;
-		this.cost=cost;
-	}
+function MenuItem(name, cost){
+	this.name = name;
+	this.cost=cost;
+}
 
-	menuItems = new Array(
-		new MenuItem("Chicken Chop Suey", 4.5),
-		new MenuItem("Sweet and Sour Pork", 6.25),
-		new MenuItem("Shrimp Lo Mein", 5.25),
-		new MenuItem("Moo Shi Chicken", 6.5),
-		new MenuItem("Fried Rice", 2.35)
-	);
+menuItems = new Array(
+	new MenuItem("Chicken Chop Suey", 4.5),
+	new MenuItem("Sweet and Sour Pork", 6.25),
+	new MenuItem("Shrimp Lo Mein", 5.25),
+	new MenuItem("Moo Shi Chicken", 6.5),
+	new MenuItem("Fried Rice", 2.35)
+);
 
-	var del = $('input[value="delivery"]');
-	var pick = $('input[value="pickup"]');
+var del = $('input[value="delivery"]');
+var pick = $('input[value="pickup"]');
 
 function showTime(){
 	if ($("form").valid()){
